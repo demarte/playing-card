@@ -16,21 +16,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Wma-CN-kDI" customClass="PlayingCardView" customModule="PlayingCard" customModuleProvider="target">
-                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <rect key="frame" x="20" y="149" width="374" height="598"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="800" id="8nP-Jd-68t"/>
+                                    <constraint firstAttribute="width" secondItem="Wma-CN-kDI" secondAttribute="height" multiplier="5:8" id="Ja2-Sq-6P7"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFaceUp" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="lEa-hp-SNa" appends="YES" id="DQx-6r-deS"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wma-CN-kDI" secondAttribute="trailing" constant="20" id="FOB-DZ-tQe"/>
-                            <constraint firstItem="Wma-CN-kDI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="NII-XF-L0c"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Wma-CN-kDI" secondAttribute="bottom" id="uId-XY-MaR"/>
-                            <constraint firstItem="Wma-CN-kDI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xJw-Dl-KVL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Wma-CN-kDI" secondAttribute="trailing" constant="20" id="FOB-DZ-tQe"/>
+                            <constraint firstItem="Wma-CN-kDI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="NII-XF-L0c"/>
+                            <constraint firstItem="Wma-CN-kDI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oLL-4L-aVg"/>
+                            <constraint firstItem="Wma-CN-kDI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sAX-Cb-3rP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Wma-CN-kDI" secondAttribute="bottom" id="uId-XY-MaR"/>
+                            <constraint firstItem="Wma-CN-kDI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xJw-Dl-KVL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="playingCardView" destination="Wma-CN-kDI" id="DMJ-v5-gxS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="lEa-hp-SNa">
+                    <connections>
+                        <action selector="flipCard:" destination="BYZ-38-t0r" id="PCo-my-R9E"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="72.991071428571431"/>
         </scene>
