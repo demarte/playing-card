@@ -150,6 +150,59 @@ final class PlayingCardView: UIView {
   }
 }
 
+// MARK: - Equatable -
+extension PlayingCardView {
+  static func == (lhs: PlayingCardView, rhs: PlayingCardView) -> Bool {
+    return lhs.rank == rhs.rank && lhs.suit == rhs.suit
+  }
+}
+
+// MARK: - Animation -
+extension PlayingCardView {
+
+  func matchAnimation(completion: (() -> Void)? = nil) {
+    let animator = UIViewPropertyAnimator(
+      duration: 0.6,
+      curve: .linear,
+      animations: {
+        self.center = self.superview!.center
+        self.transform = CGAffineTransform.identity.scaledBy(x: 3.0, y: 3.0)
+      })
+    animator.addCompletion { position in
+      UIViewPropertyAnimator
+        .runningPropertyAnimator(
+          withDuration: 0.75,
+          delay: 0,
+          options: [],
+          animations: {
+            self.transform = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
+            self.alpha = 0
+        }) { position in
+          self.isHidden = true
+          self.alpha = 1
+          self.transform = .identity
+        }
+    }
+    animator.addCompletion { position in
+      completion?()
+    }
+    animator.startAnimation()
+  }
+
+  func flipCardAnimation(completion: (() -> Void)? = nil) {
+    UIView.transition(
+      with: self,
+      duration: 0.6,
+      options: [.transitionFlipFromLeft],
+      animations: {
+        self.isFaceUp.toggle()
+    },
+      completion: { position in
+        completion?()
+    })
+  }
+}
+
 // MARK: - Constants -
 
 extension PlayingCardView {
